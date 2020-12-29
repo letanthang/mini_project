@@ -1,0 +1,9 @@
+Postgres:
+  HostName: 127.0.0.1
+  Username: postgres
+  Password: docker
+  Dbname: mini_project
+  Debug: true
+
+JWTSeret:
+  JWTEncodeKey: mysecret1234
