@@ -5,10 +5,12 @@ import (
 	"log"
 
 	"app/config"
-	"app/repo"
+	userRepo "app/repo/user"
 
 	mw "app/middleware"
 	"app/route"
+
+	mv "app/myvalidator"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -17,14 +19,15 @@ import (
 func main() {
 	fmt.Printf("config app: %+v", config.Config)
 	e := echo.New()
+	e.Validator = mv.NewValidator()
 	e.Use(middleware.Recover())
 	e.Use(mw.SimpleLogger())
 	route.All(e)
 
-	levels, err := repo.GetUsers()
+	users, err := userRepo.GetUsers()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Printf("%+v", levels)
+	fmt.Printf("%+v", users)
 	log.Println(e.Start(":9090"))
 }

@@ -1,0 +1,10 @@
+.DS_Store
+/debug
+/app
+/crm-v2
+/.idea
+/.vscode
+/vendor
+/go.sum
+/config/local
+__debug_bin

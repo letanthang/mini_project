@@ -12,16 +12,16 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-var db1 *gorm.DB
+var pgDB *gorm.DB
 
 func GetDB() *gorm.DB {
 
 	var once sync.Once
 
 	once.Do(func() {
-		db1 = new()
+		pgDB = new()
 	})
-	return db1
+	return pgDB
 }
 
 func new() *gorm.DB {

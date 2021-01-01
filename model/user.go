@@ -2,10 +2,10 @@ package model
 
 // User :
 type User struct {
-	ID     string `gorm:"column:id"`
-	Role   string `gorm:"column:name"`
-	Email  string `gorm:"column:email"`
-	TeamID string `gorm:"column:team_id"`
+	ID     string `json:"id" gorm:"column:id"`
+	Role   string `json:"role" gorm:"column:role"`
+	Email  string `json:"email" gorm:"column:email"`
+	TeamID string `json:"team_id" gorm:"column:team_id"`
 }
 
 // TableName :
