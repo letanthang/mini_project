@@ -20,7 +20,7 @@ func GetUsers(c echo.Context) error {
 // CreateUser :
 func CreateUser(c echo.Context) (err error) {
 	type myRequest struct {
-		Email  string `json:"email" query:"email" validate:"required"`
+		Email  string `json:"email" query:"email" validate:"required,email"`
 		Role   string `json:"role" query:"role" validate:"required"`
 		TeamID string `json:"team_id" query:"team_id" validate:"required"`
 	}
