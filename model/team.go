@@ -9,6 +9,14 @@ type Team struct {
 }
 
 // TableName :
-func (h Team) TableName() string {
+func (t Team) TableName() string {
 	return "team"
+}
+
+// IsExisted :
+func (t Team) IsExisted() bool {
+	if t.ID == "" {
+		return false
+	}
+	return true
 }

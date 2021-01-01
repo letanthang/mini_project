@@ -9,6 +9,14 @@ type User struct {
 }
 
 // TableName :
-func (h User) TableName() string {
+func (u User) TableName() string {
 	return "user"
+}
+
+// IsExisted :
+func (u User) IsExisted() bool {
+	if u.ID == "" {
+		return false
+	}
+	return true
 }

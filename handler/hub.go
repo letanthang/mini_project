@@ -20,8 +20,9 @@ func GetHubs(c echo.Context) error {
 // CreateHub :
 func CreateHub(c echo.Context) (err error) {
 	type myRequest struct {
-		Name        string     `json:"name" query:"name" validate:"required"`
-		GeoLocation [2]float64 `json:"geo_location" query:"geo_location" validate:"required"`
+		Name         string  `json:"name" query:"name" validate:"required"`
+		LocationLat  float64 `json:"location_lat" query:"location_lat" validate:"required"`
+		LocationLong float64 `json:"location_long" query:"location_long" validate:"required"`
 	}
 	request := new(myRequest)
 	if err = c.Bind(request); err != nil {
@@ -32,8 +33,9 @@ func CreateHub(c echo.Context) (err error) {
 	}
 
 	data := &model.Hub{
-		Name:        request.Name,
-		GeoLocation: request.GeoLocation,
+		Name:         request.Name,
+		LocationLat:  request.LocationLat,
+		LocationLong: request.LocationLong,
 	}
 
 	id, err := hubRepo.CreateHub(data)

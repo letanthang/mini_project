@@ -25,9 +25,9 @@ func Public(e *echo.Echo) {
 	g.Any("/user/create", handler.CreateUser)
 
 	g.Any("/team", handler.GetTeams)
-	g.Any("/user/create", handler.CreateTeam)
+	g.Any("/team/create", handler.CreateTeam)
 
-	g.Any("/user", handler.GetUsers)
-	g.Any("/user/create", handler.CreateUser)
+	g.Any("/hub", handler.GetHubs)
+	g.Any("/hub/create", handler.CreateHub)
 
 }

@@ -25,11 +25,23 @@ func CreateUser(c echo.Context) (err error) {
 		TeamID string `json:"team_id" query:"team_id" validate:"required"`
 	}
 	request := new(myRequest)
+	// validate input data
 	if err = c.Bind(request); err != nil {
 		return c.JSON(retErrorUser(fmt.Errorf("Input error: %s", err)))
 	}
 	if err = c.Validate(request); err != nil {
 		return c.JSON(retErrorUser(fmt.Errorf("Input validate error: %s", err)))
+	}
+
+	// check exist user with request email
+	user, err := userRepo.GetUserByEmail(request.Email)
+
+	if err != nil {
+		return c.JSON(retErrorServer(fmt.Errorf("GetUserByEmail error: %s", err)))
+	}
+
+	if user.IsExisted() {
+		return c.JSON(retErrorUser(fmt.Errorf("User with email : %s existed", request.Email)))
 	}
 
 	data := &model.User{
